@@ -1,0 +1,375 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    background: url('your-background-image-url.jpg') no-repeat center center;
+    background-size: cover;
+}
+.header .date {
+    font-size: 1.2em;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+.header .timer-display {
+    font-size: 3em;
+    margin: 10px 0;
+    position: relative;
+}
+
+/* Enhance the Circle Button */
+.circle-button {
+    width: 60px; /* Increased size for better visibility */
+    height: 60px; /* Increased size for better visibility */
+    background-color: #000000;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+/* Default state (play icon) */
+.circle-button::before {
+    content: ''; /* Pseudo-element for the play/pause icon */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #ffffff; /* Play icon */
+    transition: all 0.3s ease;
+}
+
+/* Running state (pause icon) */
+.circle-button.running::before {
+    /* Change to pause icon when running */
+    border-top: none;
+    border-bottom: none;
+    border-left: 5px solid #ffffff;
+    border-right: 5px solid #ffffff;
+    width: 10px;
+    height: 15px;
+}
+
+.circle-button:hover {
+    background-color: #333; /* Change color on hover */
+    transform: translateY(-50%) scale(1.05); /* Slight scale up on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+}
+
+/* Add a pulsating effect when the timer is running */
+.circle-button.running {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+/* Navigation Styles */
+.nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover, .nav a.active {
+    color: #4CAF50;
+    border-bottom: 2px solid #4CAF50;
+}
+
+/* Content Styles */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Timer Item */
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.timer-item #currentTimer {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* To-Do List */
+.todo-list {
+    width: 100%;
+    max-width: 400px;
+}
+
+.todo-list h3 {
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.todo-list input {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #444;
+    color: #fff;
+}
+
+.todo-list button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.todo-list button:hover {
+    background-color: #45a049;
+}
+
+.todo-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.todo-list li {
+    background: #444;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-list .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.todo-list .delete-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Profile Container */
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-details {
+    text-align: left;
+}
+
+.profile-details h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.profile-details p {
+    margin: 5px 0 15px;
+    font-size: 1em;
+    color: #ccc;
+}
+
+/* Footer Styles */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #4CAF50;
+}
+
+.footer a svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    transition: fill 0.3s ease;
+}
+
+.footer a:hover svg {
+    fill: #4CAF50;
+}
+
+/* Hide Elements */
+.buttons {
+    display: none;
+}
+
+#booksContent {
+    display: none;
+}
+
+#insightsContent {
+    padding: 20px;
+    text-align: center;
+}
+
+#yearlyProgress {
+    text-align: left;
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#yearlyProgress .day-entry {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #333;
+    border-radius: 5px;
+}
+
+#yearlyProgress .day-entry h4 {
+    margin: 0 0 5px 0;
+}
+
+#yearlyProgress .day-entry p {
+    margin: 5px 0;
+}
+/* ... (previous CSS) ... */
+
+.footer a:nth-child(3) {
+    order: 3; /* Ensure More is to the right of Groups */
+}
+
+#moreContent {
+    padding: 5px;
+    text-align: center;
+}
+
+.bg-options {
+    margin-top: 20px;
+}
+
+.bg-options button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bg-options button:hover {
+    background-color: #45a049;
+}
+
+/* ... (previous CSS) ... */
+
+.profile-pic-options {
+    margin-top: 20px;
+}
+
+.profile-pic-options button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-pic-options button:hover {
+    background-color: #45a049;
+}
+
+/* Ensure the profile image in the Books section reflects changes */
+.profile-image img {
+    transition: opacity 0.3s ease;
+}

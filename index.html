@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer with To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="date" id="date">Fri, 2/7</div>
+    <div class="timer-display" id="timer">00:00:00</div>
+    <div class="circle-button" id="toggleButton">
+</div>
+</div>
+
+<div class="nav">
+    <a href="#" class="active" onclick="showTimer()">𝖳𝗈-𝖣𝗈 𝖫𝗂𝗌𝗍</a>
+    <a href="#" onclick="showBooks()">𝖲𝗍𝗎𝖽𝗒 𝖧𝗈𝗎𝗋𝗌</a>
+    <a href="#">𝖯𝗋𝗈𝗀𝗋𝖾𝗌𝗌𝗂𝗈𝗇</a>
+</div>
+
+<div class="content">
+    <div id="booksContent">
+        <h2>Profile</h2>
+        <div class="profile-container">
+            <div class="profile-image">
+                <img src="your-image-url.jpg" alt="Profile">
+            </div>
+            <div class="profile-details">
+                <h3>Grind Timer</h3>
+                <p>Study Time Today: <span id="studyTimeDisplay">00:00:00</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="timer-item" id="timerContent">
+        <div id="currentTimer">00:00:00</div>
+        <div class="todo-list">
+            <h3>To-Do List</h3>
+            <input type="text" id="todoInput" placeholder="Add a new task">
+            <button onclick="addTodo()">Add</button>
+            <ul id="todoList"></ul>
+        </div>
+    </div>
+    <div id="insightsContent" style="display: none;">
+        <h2>𝖯𝗋𝗈𝗀𝗋𝖾𝗌𝗌𝗂𝗈𝗇</h2>
+        <div id="yearlyProgress"></div>
+    </div>
+    <div id="moreContent" style="display: none;">
+        <h2>𝖢𝗎𝗌𝗍𝗈𝗆𝗂𝗓𝖺𝗍𝗂𝗈𝗇</h2>
+        <div class="bg-options">
+            <h3>Change Background</h3>
+            <button onclick="changeBackground('image1.jpg')">𝖳𝗁𝖾𝗆𝖾 1</button>
+            <button onclick="changeBackground('image2.jpg')">𝖳𝗁𝖾𝗆𝖾 2</button>
+            <button onclick="changeBackground('image3.jpg')">𝖳𝗁𝖾𝗆𝖾 3</button>
+            <button onclick="changeBackground('image4.jpg')">𝖳𝗁𝖾𝗆𝖾 4</button>
+        </div>
+        <div class="profile-pic-options">
+            <h3>Change Profile Picture</h3>
+            <button onclick="changeProfilePicture('profile1.jpg')">𝖥𝖾𝗆𝖺𝗅𝖾 𝖠𝗏𝖺𝗍𝖺𝗋</button>
+            <button onclick="changeProfilePicture('profile2.jpg')">𝖬𝖺𝗅𝖾 𝖠𝗏𝖺𝗍𝖺𝗋</button>
+            <button onclick="changeProfilePicture('default.jpg')">𝖣𝖾𝖿𝖺𝗎𝗅𝗍 𝖠𝗏𝖺𝗍𝖺𝗋</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <a href="#" onclick="showTimer()"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home</a>
+    <a href="#" onclick="showMoreSection()"><svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>More</a>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
