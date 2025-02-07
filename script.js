@@ -126,26 +126,37 @@ function showInsightsSection() {
     // Since we're using the footer for navigation, we don't need to update nav here
 }
 
-// Function to show the More section
+// ... (previous code)
+
+// Modify showMoreSection to apply the custom background when entering the More section
 function showMoreSection() {
     document.getElementById('timerContent').style.display = 'none';
     document.getElementById('booksContent').style.display = 'none';
     document.getElementById('insightsContent').style.display = 'none';
     document.getElementById('moreContent').style.display = 'block';
+    
     // Load the saved background image if any
     const savedBackground = localStorage.getItem('selectedBackground');
-    if (savedBackground) {
+    const customBackground = localStorage.getItem('customBackground');
+    
+    if (customBackground) {
+        changeBackground(customBackground);
+    } else if (savedBackground) {
         changeBackground(savedBackground);
+    } else {
+        // Default background if none is saved
+        changeBackground('default-background.jpg'); // Replace with your default background
     }
+    
     // Load the saved profile picture if any
     const savedProfilePicture = localStorage.getItem('selectedProfilePicture');
     if (savedProfilePicture) {
         changeProfilePicture(savedProfilePicture);
+    } else {
+        // Default profile picture if none is saved
+        changeProfilePicture('default-profile.jpg'); // Replace with your default profile picture
     }
-    // Since we're using the footer for navigation, we don't need to update nav here
 }
-
-// ... (rest of the code)
 
 // ... (rest of the code)
 
@@ -552,5 +563,72 @@ window.onload = function() {
     // Update date every minute to ensure it's always current
     setInterval(updateDate, 60000);
 };
+
+// ... (rest of the code)
+// ... (previous code)
+
+// Function to open the file picker for selecting an image from the gallery
+function selectFromGallery() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = function (event) {
+        let file = event.target.files[0];
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                // Use the data URL to set the background
+                changeBackground(e.target.result);
+                // Optionally, you can save the image data URL to localStorage for persistence
+                localStorage.setItem('customBackground', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    input.click();
+}
+
+// Modify changeBackground function to handle data URLs
+function changeBackground(imageUrl) {
+    // Check if the imageUrl is a data URL or a path
+    if (imageUrl.startsWith('data:')) {
+        document.querySelector('.header').style.backgroundImage = `url(${imageUrl})`;
+    } else {
+        document.querySelector('.header').style.backgroundImage = `url('${imageUrl}')`;
+    }
+    // Save the URL to localStorage if it's not a data URL (for predefined images)
+    if (!imageUrl.startsWith('data:')) {
+        localStorage.setItem('selectedBackground', imageUrl);
+    }
+}
+
+// Modify the initializeApp function to handle custom background from localStorage
+function initializeApp() {
+    // Check for saved selections on initial load
+    const savedBackground = localStorage.getItem('selectedBackground');
+    const customBackground = localStorage.getItem('customBackground');
+    
+    if (customBackground) {
+        changeBackground(customBackground);
+    } else if (savedBackground) {
+        changeBackground(savedBackground);
+    } else {
+        // Default background if none is saved
+        changeBackground('default-background.jpg'); // Replace with your default background
+    }
+    
+    const savedProfilePicture = localStorage.getItem('selectedProfilePicture');
+    if (savedProfilePicture) {
+        changeProfilePicture(savedProfilePicture);
+    } else {
+        // Default profile picture if none is saved
+        changeProfilePicture('default-profile.jpg'); // Replace with your default profile picture
+    }
+
+    // Load saved daily data
+    loadDailyData();
+
+   
+}
 
 // ... (rest of the code)
