@@ -230,7 +230,7 @@ function stopTimer() {
     saveDailyData(); // Save data when stopping the timer
 }
 
-// Function to display yearly progress (actually 30 days)
+// Function to display insights
 function showInsights() {
     const yearlyProgress = document.getElementById('yearlyProgress');
     yearlyProgress.innerHTML = ''; // Clear previous content
@@ -248,9 +248,18 @@ function showInsights() {
         const dayEntry = document.createElement('div');
         dayEntry.className = 'day-entry';
         
-        const formattedDate = new Date(date).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        // Convert the date string to an IST Date object
+        const istDate = new Date(date);
+        const utc = istDate.getTime() + (istDate.getTimezoneOffset() * 60000);
+        const ISTOffset = 330; // IST is UTC+5:30 which is 330 minutes
+        const istTime = new Date(utc + (ISTOffset * 60000));
+        
+        // Format the date in IST
+        const formattedDate = istTime.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        const formattedTime = istTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+        
         dayEntry.innerHTML = `
-            <h4>${formattedDate}</h4>
+            <h4>${formattedDate} at ${formattedTime}</h4>
             <p>Study Time: ${formatStudyTime(entry.studyTime)}</p>
             <p>To-Do List:</p>
             <ul>${entry.todos.map(todo => `<li>${todo}</li>`).join('') || '<li>No tasks</li>'}</ul>
@@ -258,7 +267,6 @@ function showInsights() {
         yearlyProgress.appendChild(dayEntry);
     });
 }
-
 // Update the navigation function to show Insights
 function showInsightsSection() {
     document.getElementById('timerContent').style.display = 'none';
